@@ -1,20 +1,21 @@
 ﻿// const _ = require("./underscore-min");
 let deck = [];
 
-const tipos         = ['C', 'D', 'H', 'S'];
-const especiales    = ['A', 'J', 'Q', 'K'];
+const tipos = ['C', 'D', 'H', 'S'];
+const especiales = ['A', 'J', 'Q', 'K'];
 
 let puntosJugador = 0,
     puntosComputadora = 0;
 
-const btnNuevo      = document.querySelector('#btnNuevo');
-const btnDetener    = document.querySelector('#btnDetener');
+const btnNuevo = document.querySelector('#btnNuevo');
+const btnDetener = document.querySelector('#btnDetener');
 const btnPedirCarta = document.querySelector('#btnPedir');
 
-const divJugador    = document.querySelector('#jugador-cartas');
+const divJugador = document.querySelector('#jugador-cartas');
 const divComputador = document.querySelector('#computadora-cartas');
+const divFooter = document.querySelector('#divFooter');
 
-const puntosHTML    = document.querySelectorAll('small');
+const puntosHTML = document.querySelectorAll('small');
 
 const crearDeck = () => {
 
@@ -72,13 +73,13 @@ const turnoComputadora = (valorJugador) => {
 
     setTimeout(() => {
         if (puntosComputadora === puntosJugador) {
-            alert('Nadie gana');
+            divFooter.innerText = 'Nadie gana';
         } else if (valorJugador > 21) {
-            alert('Computadora Gana');
+            divFooter.innerText = 'Computadora Gana';
         } else if (puntosComputadora > 21) {
-            alert('Jugador Gana');
+            divFooter.innerText = 'Jugador Gana';
         } else {
-            alert('Computadora gana');
+            divFooter.innerText = 'Computadora gana';
         }
     }, 100);
 
@@ -99,6 +100,7 @@ btnNuevo.addEventListener('click', () => {
 
     divJugador.innerHTML = '';
     divComputador.innerHTML = '';
+    divFooter.innerHTML = '';
 });
 
 btnPedirCarta.addEventListener('click', () => {
@@ -115,22 +117,22 @@ btnPedirCarta.addEventListener('click', () => {
     divJugador.append(imgCarta);
 
     if (puntosJugador > 21) {
-        console.warn('Jugador pierde');
+        // console.warn('Jugador pierde');
         btnPedirCarta.disabled = true;
         btnDetener.disabled = true;
         turnoComputadora(puntosJugador);
     } else if (puntosJugador === 21) {
-        console.warn('Ganaste!!!');
+        divFooter.innerText = 'Ganaste!!!';
         btnPedirCarta.disabled = true;
         btnDetener.disabled = true;
     }
 
 });
 
-btnDetener.addEventListener('click', () =>{
-    
+btnDetener.addEventListener('click', () => {
+
     btnPedirCarta.disabled = true;
     btnDetener.disabled = true;
-    
+
     turnoComputadora(puntosJugador);
 })

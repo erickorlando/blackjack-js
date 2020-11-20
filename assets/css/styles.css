@@ -17,6 +17,13 @@
     width: 150px;
     left: 100px;
     margin-left: -75px;
+    animation-delay: 500ms;
+}
+
+.futer {
+    font-size: 70px;
+    color: whitesmoke;
+    text-align: center;
 }
 
 #computadora-cartas, #jugador-cartas {
